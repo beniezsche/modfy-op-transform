@@ -53,25 +53,19 @@ function isValid(
       if(transform[i].state === 'Move') {
         moveInFileType(temp, transform[i].type, transform[i].position, transform[i].secondPosition)
       }
-
   }
-
 
   let isVideoEqual = checkForArrayEquality(temp.video!,latest.video)
   let isAudioEqual = checkForArrayEquality(temp.audio!,latest.audio)
   let isImageEqual = checkForArrayEquality(temp.image!,latest.image)
   let isOtherEqual = checkForArrayEquality(temp.other!,latest.other)
 
-
   if(isAudioEqual && isVideoEqual && isImageEqual && isOtherEqual){
-    console.log(true)
     return true
   }
   else{
-    console.log(false)
     return false
   } 
-    
 }
 
 function checkForArrayEquality(temp: FileWithMetadata[], files?: FileWithMetadata[] ): boolean {
@@ -88,12 +82,10 @@ function checkForArrayEquality(temp: FileWithMetadata[], files?: FileWithMetadat
     for(var i = 0; i < temp.length; i++) {
         if(temp[i].file != files![i].file)
             return false
-
     }
-
+	
     return isEqual
 }
-
 
 function moveFiles(files: FileWithMetadata[], position: number, secondPosition: number) {
 
@@ -135,7 +127,7 @@ function moveInFileType(temp: InputFilesType, fileType: string, position?: numbe
       if(position! > -1 && position! < maxLen! && secondPosition! > -1 && secondPosition! <= maxLen!) {
            moveFiles(temp.audio!, position!, secondPosition!)
       }
-
+      
     }
     else{
 
@@ -144,8 +136,8 @@ function moveInFileType(temp: InputFilesType, fileType: string, position?: numbe
       if(position! > -1 && position! < maxLen! && secondPosition! > -1 && secondPosition! <= maxLen!) {
              moveFiles(temp.other!, position!, secondPosition!)
       }
+      
     }
-
 }
 
 function deleteFromFileType(temp: InputFilesType, fileType: string, position?: number ) {
@@ -184,7 +176,6 @@ function deleteFromFileType(temp: InputFilesType, fileType: string, position?: n
         if(position! < maxLen!) {
             temp.other?.splice(position!,1)
         }
-
     }
 }
 
@@ -194,7 +185,6 @@ function printFiles(tag: string, files: FileWithMetadata[]) {
   for(var i = 0; i < files.length; i++){
     console.log("file: " + files[i].file + " type: " + files[i].customType)
   }
-
 }
 
 function insertIntoFileType(temp: InputFilesType, fileObj?: FileWithMetadata) {
