@@ -70,8 +70,8 @@ function isValid(
 
 function checkForArrayEquality(temp: FileWithMetadata[], files?: FileWithMetadata[] ): boolean {
 
-//     if(typeof files === 'undefined' && temp.length === 0)
-//       return true
+    if(typeof files === 'undefined') // && temp.length === 0)
+      return true
 
     if(temp.length != files!.length ) {
       return false
